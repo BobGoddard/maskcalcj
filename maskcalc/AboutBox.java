@@ -34,7 +34,7 @@ public class AboutBox extends JDialog implements ActionListener {
 	private JPanel jContentPane = null;
 	private String product = "maskcalc";
 	private String version = "1.0";
-	private String copyright = "Copyright Bob Goddard Computing Ltd. (c) 2002,3,4,5,6";
+	private String copyright = "Copyright Bob Goddard Computing Ltd. (c) 2002 - 2020";
 	private String comments = "Network mask calculator";
 	private JPanel jPanel = null;
 	private JPanel jPanel1 = null;
