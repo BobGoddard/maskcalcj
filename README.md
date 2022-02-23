@@ -1,5 +1,8 @@
 A simple netmask, network, broadcast & subnet calculator.
-<img src="maskcalc_window.png" alt="maskcalc window"/>
+<img src="maskcalc_window-bin.png" alt="maskcalc window bin"/>
+<img src="maskcalc_window-oct.png" alt="maskcalc window oct"/>
+<img src="maskcalc_window-dec.png" alt="maskcalc window dec"/>
+<img src="maskcalc_window-hex.png" alt="maskcalc window hex"/>
 
 To build and run...
 1. CD into the src directory

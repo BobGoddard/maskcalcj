@@ -19,10 +19,7 @@
 
 package maskcalc;
 
-import java.net.URL;
-import java.lang.*;
 import java.io.IOException;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.AWTEvent;
@@ -147,7 +144,6 @@ public class maskcalc extends JFrame {
 	private FNumber FNumberD1;
 
 	private JMenuItem licenseMenu = null;
-	private URL imgURL;
 
 	public maskcalc() {
 		enableEvents(AWTEvent.WINDOW_EVENT_MASK);
