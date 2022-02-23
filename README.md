@@ -1,4 +1,4 @@
-A simple netmask, network, broadcast & subnet calculator.
+A simple netmask, network, broadcast & subnet calculator.<BR>
 <img src="maskcalc_window-bin.png" alt="maskcalc window bin"/>
 <img src="maskcalc_window-oct.png" alt="maskcalc window oct"/>
 <img src="maskcalc_window-dec.png" alt="maskcalc window dec"/>
