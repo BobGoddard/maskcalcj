@@ -12,12 +12,10 @@
 /**
  * Title: MaskCalc
  * Description: Network mask calculator
- * Copyright: Copyright (c) 2002, 2003, 2004, 2005, 2006
- * Company: Bob Goddard Computing Ltd.
+ * Copyright: Copyright Bob Goddard (c) 2002, 2003, 2004, 2005, 2006
  * @author Bob Goddard
- * @version 1.0
+ * @version 2.0
  */
-
 
 package maskcalc;
 
@@ -33,8 +31,8 @@ public class AboutBox extends JDialog implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private JPanel jContentPane = null;
 	private String product = "maskcalc";
-	private String version = "1.0";
-	private String copyright = "Copyright Bob Goddard Computing Ltd. (c) 2002 - 2020";
+	private String version = "2.0";
+	private String copyright = "Copyright Bob Goddard (c) 2002 - 2020";
 	private String comments = "Network mask calculator";
 	private JPanel jPanel = null;
 	private JPanel jPanel1 = null;
@@ -46,6 +44,7 @@ public class AboutBox extends JDialog implements ActionListener {
 	private JLabel jLabel2 = null;
 	private JLabel jLabel3 = null;
 	private JLabel jLabel4 = null;
+
 	/**
 	 * This is the default constructor
 	 */
@@ -53,11 +52,10 @@ public class AboutBox extends JDialog implements ActionListener {
 		super();
 		try {
 			initialize();
-	    }
-	    catch(Exception e) {
-	      e.printStackTrace();
-	    }
-	    pack();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		pack();
 
 	}
 
@@ -89,9 +87,9 @@ public class AboutBox extends JDialog implements ActionListener {
 	}
 
 	/**
-	 * This method initializes jPanel	
-	 * 	
-	 * @return javax.swing.JPanel	
+	 * This method initializes jPanel
+	 * 
+	 * @return javax.swing.JPanel
 	 */
 	private JPanel getJPanel() {
 		if (jPanel == null) {
@@ -104,9 +102,9 @@ public class AboutBox extends JDialog implements ActionListener {
 	}
 
 	/**
-	 * This method initializes jPanel1	
-	 * 	
-	 * @return javax.swing.JPanel	
+	 * This method initializes jPanel1
+	 * 
+	 * @return javax.swing.JPanel
 	 */
 	private JPanel getJPanel1() {
 		if (jPanel1 == null) {
@@ -117,9 +115,9 @@ public class AboutBox extends JDialog implements ActionListener {
 	}
 
 	/**
-	 * This method initializes jButton	
-	 * 	
-	 * @return javax.swing.JButton	
+	 * This method initializes jButton
+	 * 
+	 * @return javax.swing.JButton
 	 */
 	private JButton getJButton() {
 		if (jButton == null) {
@@ -129,7 +127,7 @@ public class AboutBox extends JDialog implements ActionListener {
 		return jButton;
 	}
 
-	//Overridden so we can exit when window is closed
+	// Overridden so we can exit when window is closed
 	protected void processWindowEvent(WindowEvent e) {
 		if (e.getID() == WindowEvent.WINDOW_CLOSING) {
 			cancel();
@@ -137,12 +135,12 @@ public class AboutBox extends JDialog implements ActionListener {
 		super.processWindowEvent(e);
 	}
 
-	//Close the dialog
+	// Close the dialog
 	void cancel() {
 		dispose();
 	}
 
-	//Close the dialog on a button event
+	// Close the dialog on a button event
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == jButton) {
 			cancel();
@@ -150,9 +148,9 @@ public class AboutBox extends JDialog implements ActionListener {
 	}
 
 	/**
-	 * This method initializes jPanel2	
-	 * 	
-	 * @return javax.swing.JPanel	
+	 * This method initializes jPanel2
+	 * 
+	 * @return javax.swing.JPanel
 	 */
 	private JPanel getJPanel2() {
 		if (jPanel2 == null) {
@@ -162,9 +160,9 @@ public class AboutBox extends JDialog implements ActionListener {
 	}
 
 	/**
-	 * This method initializes jPanel3	
-	 * 	
-	 * @return javax.swing.JPanel	
+	 * This method initializes jPanel3
+	 * 
+	 * @return javax.swing.JPanel
 	 */
 	private JPanel getJPanel3() {
 		if (jPanel3 == null) {
@@ -179,11 +177,10 @@ public class AboutBox extends JDialog implements ActionListener {
 		return jPanel3;
 	}
 
-
 	/**
-	 * This method initializes jPanel1	
-	 * 	
-	 * @return javax.swing.JPanel	
+	 * This method initializes jPanel1
+	 * 
+	 * @return javax.swing.JPanel
 	 */
 	private GridLayout getGridLayout() {
 		if (gridLayout == null) {
@@ -194,10 +191,9 @@ public class AboutBox extends JDialog implements ActionListener {
 		return gridLayout;
 	}
 
-
 	/**
-	 * This method initializes jLabel	
-	 * 	
+	 * This method initializes jLabel
+	 * 
 	 * @return javax.swing.JLabel
 	 */
 	private JLabel getLabel1() {
@@ -207,10 +203,10 @@ public class AboutBox extends JDialog implements ActionListener {
 		}
 		return jLabel1;
 	}
-	
+
 	/**
-	 * This method initializes jLabel	
-	 * 	
+	 * This method initializes jLabel
+	 * 
 	 * @return javax.swing.JLabel
 	 */
 	private JLabel getLabel2() {
@@ -220,10 +216,10 @@ public class AboutBox extends JDialog implements ActionListener {
 		}
 		return jLabel2;
 	}
-	
+
 	/**
-	 * This method initializes jLabel	
-	 * 	
+	 * This method initializes jLabel
+	 * 
 	 * @return javax.swing.JLabel
 	 */
 	private JLabel getLabel3() {
@@ -233,10 +229,10 @@ public class AboutBox extends JDialog implements ActionListener {
 		}
 		return jLabel3;
 	}
-	
+
 	/**
-	 * This method initializes jLabel	
-	 * 	
+	 * This method initializes jLabel
+	 * 
 	 * @return javax.swing.JLabel
 	 */
 	private JLabel getLabel4() {

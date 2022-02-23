@@ -1,3 +1,22 @@
+/*
+ *      This program is free software; you can redistribute it and/or
+ *      modify it under the terms of the GNU General Public License
+ *      as published by the Free Software Foundation, version 2 of
+ *      the License.
+ *
+ *      Bob Goddard Computing Ltd. does not admit liability nor provide
+ *      warranty for any of this software. This material is provided
+ *      "AS-IS" and at no charge.
+ */
+
+/**
+ * Title: MaskCalc
+ * Description: Network mask calculator
+ * Copyright: Copyright Bob Goddard (c) 2002, 2003, 2004, 2005, 2006
+ * @author Bob Goddard
+ * @version 1.0
+ */
+
 package maskcalc;
 
 import java.awt.BorderLayout;
@@ -58,9 +77,9 @@ public class license extends JDialog implements ActionListener {
 	}
 
 	/**
-	 * This method initializes jButton	
-	 * 	
-	 * @return javax.swing.JButton	
+	 * This method initializes jButton
+	 * 
+	 * @return javax.swing.JButton
 	 */
 	private JButton getJButton() {
 		if (jButton == null) {
@@ -71,7 +90,7 @@ public class license extends JDialog implements ActionListener {
 		return jButton;
 	}
 
-	//Overridden so we can exit when window is closed
+	// Overridden so we can exit when window is closed
 	protected void processWindowEvent(WindowEvent e) {
 		if (e.getID() == WindowEvent.WINDOW_CLOSING) {
 			cancel();
@@ -79,12 +98,12 @@ public class license extends JDialog implements ActionListener {
 		super.processWindowEvent(e);
 	}
 
-	//Close the dialog
+	// Close the dialog
 	void cancel() {
 		dispose();
 	}
 
-	//Close the dialog on a button event
+	// Close the dialog on a button event
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == jButton) {
 			cancel();
@@ -92,9 +111,9 @@ public class license extends JDialog implements ActionListener {
 	}
 
 	/**
-	 * This method initializes jScrollPane	
-	 * 	
-	 * @return javax.swing.JScrollPane	
+	 * This method initializes jScrollPane
+	 * 
+	 * @return javax.swing.JScrollPane
 	 */
 	private JScrollPane getJScrollPane() {
 		if (jScrollPane == null) {
@@ -105,9 +124,9 @@ public class license extends JDialog implements ActionListener {
 	}
 
 	/**
-	 * This method initializes jTextPane	
-	 * 	
-	 * @return javax.swing.JTextPane	
+	 * This method initializes jTextPane
+	 * 
+	 * @return javax.swing.JTextPane
 	 */
 	private JTextPane getJTextPane() {
 		if (jTextPane == null) {
@@ -115,11 +134,9 @@ public class license extends JDialog implements ActionListener {
 			try {
 				jTextPane.setPage(this.getClass().getResource("LICENSE").toString());
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		return jTextPane;
 	}
-
 }

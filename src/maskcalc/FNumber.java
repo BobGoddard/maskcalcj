@@ -12,12 +12,10 @@
 /**
  * Title: MaskCalc
  * Description: Network mask calculator
- * Copyright: Copyright (c) 2002, 2003, 2004, 2005, 2006
- * Company: Bob Goddard Computing Ltd.
+ * Copyright: Copyright Bob Goddard (c) 2002, 2003, 2004, 2005, 2006
  * @author Bob Goddard
  * @version 1.0
  */
-
 
 package maskcalc;
 
@@ -58,54 +56,54 @@ public class FNumber extends JComponent {
 	public void setMode(int NewMode) {
 		int L;
 		String S = "";
-		
+
 		if (NewMode == DisplayMode.BIN) {
 			S = Integer.toBinaryString(Value);
 			L = S.length();
-			
+
 			while (L < 8) {
 				S = '0' + S;
 				L++;
 			}
-			
+
 			S = S.substring(0, 4) + ' ' + S.substring(4, 8);
 			CurrentMode = DisplayMode.BIN;
 			FNText.setText(S);
-			
+
 		} else if (NewMode == DisplayMode.OCT) {
 			S = Integer.toOctalString(Value);
 			CurrentMode = DisplayMode.OCT;
 			L = S.length();
-			
+
 			while (L < 3) {
 				S = '0' + S;
 				L++;
 			}
-			
+
 			FNText.setHorizontalAlignment(SwingConstants.TRAILING);
 			FNText.setText(S);
 		} else if (NewMode == DisplayMode.DEC) {
-			
+
 			S = Integer.toString(Value);
 			CurrentMode = DisplayMode.DEC;
 			FNText.setHorizontalAlignment(SwingConstants.TRAILING);
 			FNText.setText(S);
-			
+
 		} else if (NewMode == DisplayMode.HEX) {
-			
+
 			S = Integer.toHexString(Value);
 			S = S.toUpperCase();
 			CurrentMode = DisplayMode.HEX;
 			L = S.length();
-			
+
 			while (L < 2) {
 				S = '0' + S;
 				L++;
 			}
-			
+
 			FNText.setHorizontalAlignment(SwingConstants.TRAILING);
 			FNText.setText(S);
-			
+
 		} else {
 			System.out.println("oops, wrong mode sent");
 		}

@@ -4,7 +4,7 @@
  *      as published by the Free Software Foundation, version 2 of
  *      the License.
  *
- *      Bob Goddard Computing Ltd. does not admit liability nor provide
+ *      Bob Goddard does not admit liability nor provide
  *      warranty for any of this software. This material is provided
  *      "AS-IS" and at no charge.
  */
@@ -12,14 +12,16 @@
 /**
  * Title: MaskCalc
  * Description: Network mask calculator
- * Copyright: Copyright (c) 2002, 2003, 2004, 2005, 2006
- * Company: Bob Goddard Computing Ltd.
+ * Copyright: Copyright Bob Goddard (c) 2002, 2003, 2004, 2005, 2006
  * @author Bob Goddard
- * @version 1.0
+ * @version 2.0
  */
 
-
 package maskcalc;
+
+import java.net.URL;
+import java.lang.*;
+import java.io.IOException;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -30,6 +32,11 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Point;
 
+import javax.swing.*;
+import java.awt.*;
+import javax.imageio.*;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
@@ -41,200 +48,106 @@ import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
-
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ChangeEvent;
 
 public class maskcalc extends JFrame {
-
-	/*
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-
 	private JPanel jContentPane = null;
-
 	private JMenuBar jJMenuBar = null;
-
 	private JMenu fileMenu = null;
-
 	private JMenu helpMenu = null;
-
 	private JMenuItem exitMenuItem = null;
-
 	private JMenuItem aboutMenuItem = null;
-
 	private GridLayout gridLayout = null;
-
 	private ButtonGroup buttonGroup = new ButtonGroup();
-
 	private long MaskRight;
-
 	private long MaskLeft;
-
 	private JSpinner spinnerOct4 = null;
-
 	private JSpinner spinnerOct3 = null;
-
 	private JSpinner spinnerOct2 = null;
-
 	private JSpinner spinnerOct1 = null;
-
 	private JSpinner spinnerMask = null;
-
 	private SpinnerNumberModel spinnerMOct4 = null;
-
 	private SpinnerNumberModel spinnerMOct3 = null;
-
 	private SpinnerNumberModel spinnerMOct2 = null;
-
 	private SpinnerNumberModel spinnerMOct1 = null;
-
 	private SpinnerNumberModel spinnerMMask = null;
 
-	/*
-	 * Row 1
-	 */
 	private JPanel panelOct4 = null;
-
 	private JPanel panelOct3 = null;
-
 	private JPanel panelOct2 = null;
-
 	private JPanel panelOct1 = null;
-
 	private JPanel panelMask = null;
 
-	/*
-	 * Row 2
-	 */
 	private JPanel panelOct1_8 = null;
-
 	private JPanel panelOct9_16 = null;
-
 	private JPanel panelOct17_24 = null;
-
 	private JPanel panelOct25_32 = null;
-
 	private JPanel panelOctNull = null;
 
-	/*
-	 * Row 3
-	 */
 	private JPanel panelI4 = null;
-
 	private JPanel panelI3 = null;
-
 	private JPanel panelI2 = null;
-
 	private JPanel panelI1 = null;
 
-	/*
-	 * Row 4
-	 */
 	private JPanel panelA4 = null;
-
 	private JPanel panelA3 = null;
-
 	private JPanel panelA2 = null;
-
 	private JPanel panelA1 = null;
 
-	/*
-	 * Row 5
-	 */
 	private JPanel panelB4 = null;
-
 	private JPanel panelB3 = null;
-
 	private JPanel panelB2 = null;
-
 	private JPanel panelB1 = null;
 
-	/*
-	 * Row 6
-	 */
 	private JPanel panelC4 = null;
-
 	private JPanel panelC3 = null;
-
 	private JPanel panelC2 = null;
-
 	private JPanel panelC1 = null;
 
-	/*
-	 * Row 7
-	 */
 	private JPanel panelD4 = null;
-
 	private JPanel panelD3 = null;
-
 	private JPanel panelD2 = null;
-
 	private JPanel panelD1 = null;
 
 	private JRadioButton BinButton = null;
-
 	private JRadioButton OctButton = null;
-
 	private JRadioButton DecButton = null;
-
 	private JRadioButton HexButton = null;
 
 	private JLabel labelAddr = null;
-
 	private JLabel labelNet = null;
-
 	private JLabel labelBcast = null;
-
 	private JLabel labelWild = null;
-
 	private JLabel labelSub = null;
-
 	private JLabel labelhe = null;
 
 	private FNumber FNumberI4;
-
 	private FNumber FNumberI3;
-
 	private FNumber FNumberI2;
-
 	private FNumber FNumberI1;
-
 	private FNumber FNumberA4;
-
 	private FNumber FNumberA3;
-
 	private FNumber FNumberA2;
-
 	private FNumber FNumberA1;
-
 	private FNumber FNumberB4;
-
 	private FNumber FNumberB3;
-
 	private FNumber FNumberB2;
-
 	private FNumber FNumberB1;
-
 	private FNumber FNumberC4;
-
 	private FNumber FNumberC3;
-
 	private FNumber FNumberC2;
-
 	private FNumber FNumberC1;
-
 	private FNumber FNumberD4;
-
 	private FNumber FNumberD3;
-
 	private FNumber FNumberD2;
-
 	private FNumber FNumberD1;
 
 	private JMenuItem licenseMenu = null;
+	private URL imgURL;
 
 	public maskcalc() {
 		enableEvents(AWTEvent.WINDOW_EVENT_MASK);
@@ -245,11 +158,6 @@ public class maskcalc extends JFrame {
 		}
 	}
 
-	/**
-	 * This method initializes jMenuItem	
-	 * 	
-	 * @return javax.swing.JMenuItem	
-	 */
 	private JMenuItem getLicenseMenu() {
 		if (licenseMenu == null) {
 			licenseMenu = new JMenuItem();
@@ -263,9 +171,6 @@ public class maskcalc extends JFrame {
 		return licenseMenu;
 	}
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		maskcalc application = new maskcalc();
 		application.setVisible(true);
@@ -277,6 +182,15 @@ public class maskcalc extends JFrame {
 	 * @return void
 	 */
 	private void initialize() {
+		BufferedImage image = null;
+
+		try {
+			image = ImageIO.read(getClass().getResource("/maskcalc.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		this.setIconImage(image);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setJMenuBar(getJJMenuBar());
 		this.setSize(560, 300);
@@ -364,40 +278,35 @@ public class maskcalc extends JFrame {
 			jContentPane.add(getHexButton());
 			jContentPane.add(getLabelhe());
 
-			spinnerOct4
-					.addChangeListener(new javax.swing.event.ChangeListener() {
-						public void stateChanged(ChangeEvent e) {
-							spinnerOct4_stateChanged(e);
-						}
-					});
+			spinnerOct4.addChangeListener(new javax.swing.event.ChangeListener() {
+				public void stateChanged(ChangeEvent e) {
+					spinnerOct4_stateChanged(e);
+				}
+			});
 
-			spinnerOct3
-					.addChangeListener(new javax.swing.event.ChangeListener() {
-						public void stateChanged(ChangeEvent e) {
-							spinnerOct3_stateChanged(e);
-						}
-					});
+			spinnerOct3.addChangeListener(new javax.swing.event.ChangeListener() {
+				public void stateChanged(ChangeEvent e) {
+					spinnerOct3_stateChanged(e);
+				}
+			});
 
-			spinnerOct2
-					.addChangeListener(new javax.swing.event.ChangeListener() {
-						public void stateChanged(ChangeEvent e) {
-							spinnerOct2_stateChanged(e);
-						}
-					});
+			spinnerOct2.addChangeListener(new javax.swing.event.ChangeListener() {
+				public void stateChanged(ChangeEvent e) {
+					spinnerOct2_stateChanged(e);
+				}
+			});
 
-			spinnerOct1
-					.addChangeListener(new javax.swing.event.ChangeListener() {
-						public void stateChanged(ChangeEvent e) {
-							spinnerOct1_stateChanged(e);
-						}
-					});
+			spinnerOct1.addChangeListener(new javax.swing.event.ChangeListener() {
+				public void stateChanged(ChangeEvent e) {
+					spinnerOct1_stateChanged(e);
+				}
+			});
 
-			spinnerMask
-					.addChangeListener(new javax.swing.event.ChangeListener() {
-						public void stateChanged(ChangeEvent e) {
-							spinnerMask_stateChanged(e);
-						}
-					});
+			spinnerMask.addChangeListener(new javax.swing.event.ChangeListener() {
+				public void stateChanged(ChangeEvent e) {
+					spinnerMask_stateChanged(e);
+				}
+			});
 
 			BinButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -516,8 +425,7 @@ public class maskcalc extends JFrame {
 		Dimension dlgSize = dlg.getPreferredSize();
 		Dimension frmSize = getSize();
 		Point loc = getLocation();
-		dlg.setLocation((frmSize.width - dlgSize.width) / 2 + loc.x,
-				(frmSize.height - dlgSize.height) / 2 + loc.y);
+		dlg.setLocation((frmSize.width - dlgSize.width) / 2 + loc.x, (frmSize.height - dlgSize.height) / 2 + loc.y);
 		dlg.setModal(true);
 		dlg.setVisible(true);
 	}
@@ -527,8 +435,7 @@ public class maskcalc extends JFrame {
 		Dimension dlgSize = dlg.getPreferredSize();
 		Dimension frmSize = getSize();
 		Point loc = getLocation();
-		dlg.setLocation((frmSize.width - dlgSize.width) / 2 + loc.x,
-				(frmSize.height - dlgSize.height) / 2 + loc.y);
+		dlg.setLocation((frmSize.width - dlgSize.width) / 2 + loc.x, (frmSize.height - dlgSize.height) / 2 + loc.y);
 		dlg.setModal(true);
 		dlg.setVisible(true);
 	}
@@ -623,10 +530,8 @@ public class maskcalc extends JFrame {
 	private JPanel getPanelOct1_8() {
 		if (panelOct1_8 == null) {
 			panelOct1_8 = new JPanel(new BorderLayout());
-			panelOct1_8.add(new JLabel("  1", SwingConstants.LEADING),
-					BorderLayout.WEST);
-			panelOct1_8.add(new JLabel("8  ", SwingConstants.TRAILING),
-					BorderLayout.EAST);
+			panelOct1_8.add(new JLabel("  1", SwingConstants.LEADING), BorderLayout.WEST);
+			panelOct1_8.add(new JLabel("8  ", SwingConstants.TRAILING), BorderLayout.EAST);
 			panelOct1_8.setBorder(BorderFactory.createEtchedBorder());
 		}
 		return panelOct1_8;
@@ -640,10 +545,8 @@ public class maskcalc extends JFrame {
 	private JPanel getPanelOct9_16() {
 		if (panelOct9_16 == null) {
 			panelOct9_16 = new JPanel(new BorderLayout());
-			panelOct9_16.add(new JLabel("  9", SwingConstants.LEADING),
-					BorderLayout.WEST);
-			panelOct9_16.add(new JLabel("16  ", SwingConstants.TRAILING),
-					BorderLayout.EAST);
+			panelOct9_16.add(new JLabel("  9", SwingConstants.LEADING), BorderLayout.WEST);
+			panelOct9_16.add(new JLabel("16 ", SwingConstants.TRAILING), BorderLayout.EAST);
 			panelOct9_16.setBorder(BorderFactory.createEtchedBorder());
 		}
 		return panelOct9_16;
@@ -657,10 +560,8 @@ public class maskcalc extends JFrame {
 	private JPanel getPanelOct17_24() {
 		if (panelOct17_24 == null) {
 			panelOct17_24 = new JPanel(new BorderLayout());
-			panelOct17_24.add(new JLabel("  17", SwingConstants.LEADING),
-					BorderLayout.WEST);
-			panelOct17_24.add(new JLabel("24  ", SwingConstants.TRAILING),
-					BorderLayout.EAST);
+			panelOct17_24.add(new JLabel("  17", SwingConstants.LEADING), BorderLayout.WEST);
+			panelOct17_24.add(new JLabel("24  ", SwingConstants.TRAILING), BorderLayout.EAST);
 			panelOct17_24.setBorder(BorderFactory.createEtchedBorder());
 		}
 		return panelOct17_24;
@@ -674,10 +575,8 @@ public class maskcalc extends JFrame {
 	private JPanel getPanelOct25_32() {
 		if (panelOct25_32 == null) {
 			panelOct25_32 = new JPanel(new BorderLayout());
-			panelOct25_32.add(new JLabel("  25", SwingConstants.LEADING),
-					BorderLayout.WEST);
-			panelOct25_32.add(new JLabel("32  ", SwingConstants.TRAILING),
-					BorderLayout.EAST);
+			panelOct25_32.add(new JLabel("  25", SwingConstants.LEADING), BorderLayout.WEST);
+			panelOct25_32.add(new JLabel("32  ", SwingConstants.TRAILING), BorderLayout.EAST);
 			panelOct25_32.setBorder(BorderFactory.createEtchedBorder());
 		}
 		return panelOct25_32;
@@ -767,7 +666,7 @@ public class maskcalc extends JFrame {
 	 */
 	private JLabel getLabelNet() {
 		if (labelNet == null) {
-			labelNet = new JLabel("Network");
+			labelNet = new JLabel("Subnet");
 		}
 		return labelNet;
 	}
@@ -803,7 +702,7 @@ public class maskcalc extends JFrame {
 	 */
 	private JLabel getLabelSub() {
 		if (labelSub == null) {
-			labelSub = new JLabel("Subnet");
+			labelSub = new JLabel("Netmask");
 		}
 		return labelSub;
 	}
@@ -1642,4 +1541,4 @@ public class maskcalc extends JFrame {
 		updateOct1();
 
 	}
-} // @jve:decl-index=0:visual-constraint="10,10"
+}

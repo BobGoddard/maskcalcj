@@ -12,21 +12,19 @@
 /**
  * Title: MaskCalc
  * Description: Network mask calculator
- * Copyright: Copyright (c) 2002, 2003, 2004, 2005, 2006
- * Company: Bob Goddard Computing Ltd.
+ * Copyright: Copyright Bob Goddard (c) 2002, 2003, 2004, 2005, 2006
  * @author Bob Goddard
  * @version 1.0
  */
 
-
 package maskcalc;
 
 public class DisplayMode {
-	  public DisplayMode() {
-	  }
+	public DisplayMode() {
+	}
 
-	  public static int BIN = 2;
-	  public static int OCT = 8;
-	  public static int DEC = 10;
-	  public static int HEX = 16;
+	public static int BIN = 2;
+	public static int OCT = 8;
+	public static int DEC = 10;
+	public static int HEX = 16;
 }
